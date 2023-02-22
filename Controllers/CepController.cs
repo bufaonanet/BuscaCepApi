@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BuscaCepApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class CepController : ControllerBase
     {
@@ -14,7 +14,7 @@ namespace BuscaCepApi.Controllers
             _logger = logger;
         }
 
-        [HttpGet("GetEndereco/{cep}")]
+        [HttpGet("{cep}")]
         public async Task<IActionResult> GetEndereco(
             [FromServices] ICepService cepService, string cep, CancellationToken cancellationToken)
         {
