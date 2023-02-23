@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+//Add Healchecks
 builder.Services.AddHealthChecks();
 
 builder.Services.AddEndpointsApiExplorer();
@@ -18,7 +19,7 @@ builder.Services.AddHttpClient<ICepService, CepService>();
 
 var app = builder.Build();
 
-app.UseHealthChecks("/status", new HealthCheckOptions
+app.UseHealthChecks("/Health", new HealthCheckOptions
 {
     ResponseWriter = async (context, report) =>
     {
@@ -47,6 +48,9 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+//creating endpoint for mu health check
+//app.MapHealthChecks("/Health");
 
 
 app.Run();
